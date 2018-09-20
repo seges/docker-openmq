@@ -1,8 +1,8 @@
 FROM java:8-jdk
 MAINTAINER Ladislav Gazo <gazo@seges.sk>
 
-ENV OPENMQ_VERSION 4.5
-ENV OPENMQ_ARCHIVE openmq4_5-binary-Linux_X86.zip
+ENV OPENMQ_VERSION 4.5.2
+ENV OPENMQ_ARCHIVE openmq4_5_2-binary-Linux_X86.zip
 
 ADD /config/config.properties /usr/local/openmq/MessageQueue4_5/var/mq/instances/imqbroker/props/config.properties
 
@@ -12,8 +12,8 @@ RUN useradd -d /home/openmq -u 1001 -s /bin/bash openmq && \
 #    mkdir -p /usr/local/openmq && \
 
 USER openmq
-RUN cd /usr/local/openmq && \
-    curl -v -o $OPENMQ_ARCHIVE http://download.java.net/mq/open-mq/$OPENMQ_VERSION/b29-fcs/$OPENMQ_ARCHIVE && \
+RUN cd /usr/local/openmq/MessageQueue4_5 && \
+    curl -v -o $OPENMQ_ARCHIVE http://download.oracle.com/mq/open-mq/$OPENMQ_VERSION/latest/$OPENMQ_ARCHIVE && \
     unzip $OPENMQ_ARCHIVE
 
 
